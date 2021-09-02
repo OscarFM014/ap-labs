@@ -10,30 +10,32 @@
 long calc(int operator, int nValues, int *values)
 {
     long result = values[0];
+    printf("%i ", result);
     for (int i = 1; i < nValues; i++)
     {
-        printf("%i \n", values[i]);
         if (operator== 1)
         {
             result += values[i];
+            printf(" + %i", values[i]);
         }
         else if (operator== 2)
         {
             result -= values[i];
+            printf(" - %i", values[i]);
         }
         else
         {
             result *= values[i];
+            printf(" * %i", values[i]);
         }
-        printf("%li \n", result);
     }
+    printf(" = %i \n", result);
     return result;
 }
 
-//TODO: clean the code
 int main(int argc, char **argv)
 {
-
+    // Validate correct size inputs
     if (argc < 3)
     {
         printf("You need to write in correct order the input:\n");
@@ -42,8 +44,8 @@ int main(int argc, char **argv)
     }
 
     char *word_oper = argv[1];
-    printf("%s \n", word_oper);
 
+    //Validate just correct operators
     if (!strcmp(word_oper, "add") == 0 && !strcmp(word_oper, "sub") == 0 && !strcmp(word_oper, "mult") == 0)
     {
         printf("You need to write in correct order the input and just this operations:\n");
@@ -64,7 +66,6 @@ int main(int argc, char **argv)
         number = strtol(argv[i], &aux, 10);
         if (*aux == '\0')
         {
-            /*  printf("%i \n", number); */
             arr[i - 2] = number;
         }
         else
