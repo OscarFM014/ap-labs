@@ -12,15 +12,22 @@ import (
 // multiplication (3)
 func calc(operator int, values []int) int {
 	result := values[0]
+	fmt.Print("", result)
 	for i := 1; i < len(values); i++ {
 		if operator == 1 {
 			result += values[i]
+			fmt.Print(" + ", values[i])
 		} else if operator == 2 {
 			result -= values[i]
+			fmt.Print(" - ", values[i])
 		} else {
 			result *= values[i]
+			fmt.Print(" * ", values[i])
 		}
 	}
+
+	fmt.Print(" = ", result)
+	fmt.Print("\n")
 	return result
 }
 
@@ -50,7 +57,6 @@ func main() {
 		first, err := strconv.ParseInt(values[i], 10, 0)
 		if err == nil {
 			arr[i-1] = int(first)
-			fmt.Printf("%d", arr[i-1])
 		} else {
 			fmt.Printf("You need to write in correct order the input (integers): \n")
 			fmt.Printf("./calculator.c add 1 2 3 4 5\n")
@@ -66,6 +72,6 @@ func main() {
 		operator = 3
 	}
 
-	fmt.Printf("%d", calc(operator, arr))
+	calc(operator, arr)
 
 }
