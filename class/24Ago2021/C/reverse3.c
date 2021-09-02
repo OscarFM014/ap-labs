@@ -17,7 +17,7 @@ void reverse(int lenght, int arr[])
 
 int main(int argc, char **argv)
 {
-
+    
     int i, lenght, *arr;
     srand(time(NULL));
 
