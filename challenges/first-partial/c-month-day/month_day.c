@@ -47,7 +47,7 @@ int main(int argc, char **argv)
         printf("You need to write in correct order the input:\n");
         printf("./month_day <year> <yearday>\n");
         printf("./month_day 2019 33\n");
-        return -1;
+        return 0;
     }
     day_year = strtol(argv[2], &aux, 10);
     if (*aux != '\0')
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
         printf("You need to write in correct order the input:\n");
         printf("./month_day <year> <yearday>\n");
         printf("./month_day 2019 33\n");
-        return -1;
+        return 0;
     }
 
     // 1 is leap year
@@ -67,7 +67,7 @@ int main(int argc, char **argv)
         printf("You need to write in correct order the input and year > 0 (year 0 does not exits):\n");
         printf("./month_day <year> <yearday>\n");
         printf("./month_day 1 33\n");
-        return -1;
+        return 0;
     }
 
     //Validate correct day year
@@ -77,7 +77,7 @@ int main(int argc, char **argv)
         printf("year day is not a valid value\n");
         printf("./month_day <year> <yearday>\n");
         printf("./month_day 1 33\n");
-        return -1;
+        return 0;
     }
 
     //Validate correct day year related to the leap year
@@ -87,7 +87,7 @@ int main(int argc, char **argv)
         printf("year day is not valid for a non leap year\n");
         printf("./month_day <year> <yearday>\n");
         printf("./month_day 1991 365\n");
-        return -1;
+        return 0;
     }
     int month = 0;
     int day = 0;
@@ -100,7 +100,7 @@ int main(int argc, char **argv)
         "Oct", "Nov", "Dec"};
     month_day(year, day_year, &month, &day);
 
-    printf("%s %02d, %i", name[month], day, year);
+    printf("%s %02d, %i \n", name[month], day, year);
 
     return 0;
 }
