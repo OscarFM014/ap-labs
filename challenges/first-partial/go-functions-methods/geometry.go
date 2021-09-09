@@ -59,6 +59,7 @@ func printClosedPath(points []Point, n int) []Point {
 	ymin := points[0].Y()
 	min := 0
 
+	// Get the bottom and minus x point
 	for i := 1; i < n; i++ {
 		y := points[i].Y()
 		if (y < ymin) || (ymin == y && points[i].X() < points[min].X()) {
@@ -67,11 +68,13 @@ func printClosedPath(points []Point, n int) []Point {
 		}
 	}
 
+	// The smallest bottom and minus x to be the pivot
 	temp := points[0]
 	points[0] = points[min]
 	points[min] = temp
 	p0 = points[0]
 
+	// Custom sort by the closest point (pivot) by angle (orientation)
 	sort.SliceStable(points[0:], func(i, j int) bool {
 		p1 := points[i]
 		p2 := points[j]
@@ -82,26 +85,29 @@ func printClosedPath(points []Point, n int) []Point {
 		return o == 2
 	})
 
-	fmt.Println(points)
-
 	return points
 
 }
 
 func main() {
 	values := os.Args[1:]
+
+	//Check correct length
 	if len(os.Args) != 2 {
 		fmt.Printf("You need to write in correct order the input (integers): \n")
 		fmt.Printf("go run geometry.go 4\n")
 		os.Exit(1)
 	}
 	sides, err := strconv.ParseInt(values[0], 10, 0)
+
+	//Check just int values
 	if err != nil {
 		fmt.Printf("You need to write in correct order the input (int): \n")
 		fmt.Printf("go run geometry.go 4\n")
 		os.Exit(1)
 	}
 
+	//Check value sides
 	if sides <= 2 {
 		fmt.Printf("There is not a irregular figure with just 2 sides \n")
 		fmt.Printf("go run geometry.go 3\n")
@@ -117,15 +123,12 @@ func main() {
 		all_points[i] = Point{min + rand.Float64()*(max-min), min + rand.Float64()*(max-min)}
 	}
 
-	//myP := []Point{{0, 3}, {1, 1}, {2, 2}, {4, 4}, {0, 0}, {1, 2}, {3, 1}, {3, 3}}
-	//myP := []Point{{-3, 1}, {2, 3}, {0, 0}, {-1.5, -1.5}}
-
 	myP := all_points
 
-	fmt.Println(myP)
-
+	//Function to order the points to not get intersection in lines
 	all_points = printClosedPath(myP, len(myP))
 
+	//Print in the correct format
 	fmt.Printf("- Generating a [%d] side figure\n", sides)
 	fmt.Println("- Figure's vertices")
 	for i := 0; i < len(all_points); i++ {
@@ -142,9 +145,10 @@ func main() {
 
 	fmt.Printf(" %2f ", all_points[0].DistanceFinal(all_points[sides-1]))
 	totalRes = totalRes + all_points[0].DistanceFinal(all_points[sides-1])
-	fmt.Printf("= %2f", totalRes)
+	fmt.Printf("= %2f\n", totalRes)
 }
 
 //References
 //https://www.geeksforgeeks.org/find-simple-closed-path-for-a-given-set-of-points/
 //https://www.callicoder.com/golang-sorting-custom-functions/
+//Oscar
