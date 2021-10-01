@@ -22,6 +22,12 @@ int mystrfind(char *origin, char *substr){
         return -1;
     }
 
+    //I dont know if add this the substring can't be the same as the original string
+    /*  if(mystrlen(origin) == mystrlen(substr) ){
+        return -1;
+    } */
+
+
     int size_origin = mystrlen(origin);
     int size_substring = mystrlen(substr);
     int size_find_substring = 0;

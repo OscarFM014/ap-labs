@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
     if(argc != 4){
         printf("Program just support the following arguments: \n");
         printf("./main.o -add \"Initial String\" \"This is the rest to be added\" \n");
-        printf("./main.o -find \"Initial String " "Init\" \n");
+        printf("./main.o -find \"Initial String\" \"Init\" \n");
         return -1;
     }
 
