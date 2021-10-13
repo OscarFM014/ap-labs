@@ -90,6 +90,7 @@ int main(int argc, char **argv)
 		}
     }
 
+	//Create the array of void pointers
 	fptr = fopen(fileName,"r");
 	int left = 0;
 	int right = sizeFile - 1;
@@ -97,18 +98,15 @@ int main(int argc, char **argv)
 	void *lineptr[sizeFile];
 	len = 0;
 	while ((read = getline(&line, &len, fptr) != -1)) {
-		if(strcmp("\n", line) != 0 && strcmp(" ", line) != 0){
 			lineptr[numLines] = malloc(strlen(line));
 			strcpy(lineptr[numLines++], line);
-		}
-		
     }
 	
 	
 	// Save the element depending of the -n command
 	if(isNumberFile){
 		if(strcmp("-quicksort", sortType) == 0){
-			quicksort(lineptr, left, right, (int (*)(void *, void *)) numcmp);
+			quicksort(lineptr, left, right, (int (*)(void *, void *))numcmp);
 		}else if(strcmp("-mergesort", sortType) == 0){
 			mergesort(lineptr, left, right, (int (*)(void *, void *))numcmp);
 		}else {
@@ -120,7 +118,7 @@ int main(int argc, char **argv)
 	}else{
 		if(strcmp("-quicksort", sortType) == 0){
 			quicksort( lineptr, left, right, (int (*)(void *, void *))strcmp);
-			
+		
 		}else if(strcmp("-mergesort", sortType) == 0){
 			mergesort( lineptr, left, right, (int (*)(void *, void *))strcmp);
 			
@@ -133,7 +131,7 @@ int main(int argc, char **argv)
 	} 
 
 	/* for (int i = 0; i < sizeFile; i++) {
-		printf( "%s", (char *)lineptr[i]);
+		printf("%s", (char *)lineptr[i]);
 	}  */
 
 	FILE *output;
