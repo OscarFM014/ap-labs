@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <fcntl.h>
 
 #define REPORT_FILE "report.txt"
 #define mySize 4000
@@ -65,7 +66,7 @@ void insert(char* key, char* word) {
 }
 
 //Write the REPORT_FILE function 
-void write() {
+void writeOnDocument() {
     int i = 0;
     FILE *output;
     output = fopen(REPORT_FILE, "w+");
@@ -94,6 +95,7 @@ void analizeLog(char *logFile, char *report) {
 
     // Implement your solution here.
 
+   
     //Init the hashArray
     hashArray[mySize] = (struct DataItem*) malloc(sizeof(struct DataItem));
     
@@ -191,8 +193,16 @@ void analizeLog(char *logFile, char *report) {
     }
 
     //Write the document
-    write();
-    printf("Report is generated at: [%s]\n", report);
+    writeOnDocument();
+    int fd;
+    fd=open(REPORT_FILE,O_RDWR);
+    if (fd != -1)
+    {
+        write(1,"Report is generated at: ", sizeof("Report is generated at: "));
+        printf("[%s]\n", REPORT_FILE);
+        close(fd);
+    }
+    
 }
 
 
