@@ -1,7 +1,7 @@
 Lab - ClockWall
 ===================
 
-Modify the [serverClock.go](./serverClock.go) to accept the `-port` parameter
+Modify the [clockServer.go](./clockServer.go) to accept the `-port` parameter
 and write a program [clockWall.go](clockWall.go) that acts as a client
 of several clock servers at once.
 
@@ -18,17 +18,17 @@ In order to run your clock servers and client you will need to open different te
 
 - **Terminal 1** (Clock Server 1)
 ```
-$ TZ=US/Eastern    go run serverClock.go -port 8010
+$ TZ=US/Eastern    go run clockServer.go -port 8010
 ```
 
 - **Terminal 2** (Clock Server 2)
 ```
-$ TZ=Asia/Tokyo    go run serverClock.go -port 8020
+$ TZ=Asia/Tokyo    go run clockServer.go -port 8020
 ```
 
 - **Terminal 3** (Clock Server 4)
 ```
-$ TZ=Europe/London go run serverClock.go -port 8030
+$ TZ=Europe/London go run clockServer.go -port 8030
 ```
 
 - **Terminal 4** (Single Clock Wall Client)
@@ -55,6 +55,7 @@ Useful links
 ------------
 - https://yourbasic.org/golang/time-change-convert-location-timezone/
 - https://golang.org/pkg/flag/
+- https://gobyexample.com/environment-variables
 
 
 Test Suite
