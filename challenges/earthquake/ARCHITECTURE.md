@@ -34,13 +34,15 @@ A description of the logical view of the architecture. Describes the most import
 
 ### Architecture Overview
 
+![Architecture Overview Flow](ARV.drawio.png)
 
-##Process View
+
+## Process View
 A description of the logical view of the architecture. Describes the most important classes and the organization of the system. Class diagrams may be included to illustrate the relationships between architecturally.
 
-###Processes
+### Processes
 
-
+![Processes Flow](Process.drawio.png)
 
 ## Getting Started 🚀
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -132,7 +134,7 @@ Trapped people:
 + **Linda Abundis** *-  Developer -*  [Linda Abundis](https://github.com/LindaNayeli104)
 + **Oscar Fernandez** *- Developer-* [OscarFM014](https://github.com/OscarFM014)
 
-See also the list of [**contributors**](https://github.com/OscarFM014/diversify/graphs/contributors) who participated in this project.
+See also the list of [**contributors**](https://github.com/OscarFM014/ap-labs/graphs/contributors) who participated in this project.
 
 ## License 📄
 This project is licensed under the [MIT](https://choosealicense.com/licenses/mit/) License
