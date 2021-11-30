@@ -57,6 +57,7 @@ func (this *Stack) Push(value string) {
 	this.length++
 }
 
+//Struct person
 type person struct {
 	speed     int
 	path      [][2]int
@@ -66,6 +67,8 @@ type person struct {
 
 var n_exits int
 var n_people int
+
+// 1 floor building
 var floor = [7][7]int{
 	{1, 1, 1, 1, 1, 1, 1},
 	{1, 0, 0, 0, 0, 0, 1},
@@ -86,6 +89,7 @@ func array_gen_path(maze [7][7]int, x_position int, y_position int) [][2]int {
 	var visited [7][7]bool
 	var pathToExit [][2]int
 
+	//Init Stack
 	stack := New()
 
 	stack.Push(strconv.Itoa(x_position) + "," + strconv.Itoa(y_position))
@@ -119,8 +123,9 @@ func array_gen_path(maze [7][7]int, x_position int, y_position int) [][2]int {
 	return pathToExit
 }
 
-func setVariables() {
+func set_variables() {
 	var random_x, random_y, random_speed int
+	//Generate random exits
 	for i := 0; i < n_exits; i++ {
 		rand.Seed(time.Now().UnixNano())
 		if (rand.Intn(6-1)+1)%2 == 0 {
@@ -134,12 +139,14 @@ func setVariables() {
 
 	p := new(person)
 
+	//Generate array of person
 	for i := 0; i < n_people; i++ {
 		rand.Seed(time.Now().UnixNano())
 		random_x = rand.Intn(6-1) + 1
 		random_y = rand.Intn(6-1) + 1
 		random_speed = rand.Intn(20-10) + 10
 		p = new(person)
+		//Generate path to the exit
 		p.path = array_gen_path(floor, random_x, random_y)
 		p.speed = random_speed
 		p.current_x = random_x
@@ -160,7 +167,7 @@ func walking_out(per person, out_build chan person) {
 		if floor[per.current_x][per.current_y] == 8 {
 			per.speed = 90
 			fmt.Println("\nCollision People, Slow Speed")
-			time.Sleep(time.Duration(per.speed) * time.Second)
+			time.Sleep(time.Duration(per.speed) * time.Millisecond)
 		}
 		floor[per.current_x][per.current_y] = 8
 	}
@@ -192,7 +199,7 @@ func exit_building() {
 	}
 }
 
-func printFloor() {
+func print_floor() {
 	for i := 0; i < 7; i++ {
 		fmt.Println(floor[i])
 	}
@@ -213,7 +220,7 @@ func main() {
 		fmt.Errorf("Too many exits on the building")
 	}
 
-	setVariables()
+	set_variables()
 
 	fmt.Println(n_people, "People In the Building (represented with 8): ")
 
@@ -229,7 +236,10 @@ func main() {
 
 	fmt.Println(" \nStarting Earthquake! Duration:", time_to_exit, "seconds\n")
 	fmt.Println("People exiting the building in real time: ")
+
+	//Start Exit
 	exit_building()
+
 	fmt.Println("Safe people:")
 	var people_trapped []person
 	var finded bool
